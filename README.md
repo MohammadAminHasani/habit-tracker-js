@@ -42,7 +42,7 @@ habit-tracker-js/
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/MohammadAminHasani/habit-tracker-js>
 ```
 
 2. Open `index.html` in your browser.
