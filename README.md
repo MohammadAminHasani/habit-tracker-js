@@ -125,21 +125,6 @@ The Settings page provides controls for:
 * Clearing stored habits
 * Project information
 
-## Future Improvements
-
-Possible future improvements include:
-
-* Habit streak tracking
-* Daily habit history
-* Calendar-based progress visualization
-* Habit categories
-* Custom reminders
-* Importing previously exported backups
-* More detailed statistics
-* Improved accessibility
-* Automated testing
-* Backend synchronization
-
 ## License
 
 This project is licensed under the MIT License.
