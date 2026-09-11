@@ -1,169 +1,279 @@
-'use strict'
+"use strict";
 
 // =====================
-// Configuration
+// DOM
 // =====================
 
-const APP_NAME = 'HABIT TRACKER v1.0'
-const LINE = '=================='
+const elements = {
+  tasksContainer: document.querySelector(".tasks"),
+  addHabitButton: document.querySelector("#addHabitBtn"),
+  addHabitModal: document.querySelector("#habitBlurModel"),
+  addHabitForm: document.querySelector(".habitInformation"),
+  habitNameInput: document.querySelector("#habitName"),
+  iconSelection: document.querySelector("#iconSelection"),
+  cancelButton: document.querySelector("#cancelButton"),
+
+  progressCircle: document.querySelector(".progressCircle"),
+  progressText: document.querySelector("#progressText"),
+  habitCount: document.querySelector("#countHabit"),
+
+  editHabitModal: document.querySelector("#editHabitBlur"),
+  editHabitForm: document.querySelector(".editHabitInformation"),
+  editHabitNameInput: document.querySelector("#editHabitName"),
+  editIconSelection: document.querySelector("#editIconSelection"),
+  cancelEditButton: document.querySelector("#cancelEditButton"),
+};
 
 // =====================
-// Data
+// State
 // =====================
 
-const habits = []
+const habits = [];
+
+let habitBeingEdited = null;
 
 // =====================
-// Main Controller
+// Rendering
 // =====================
 
-function mainMenu(){
-    let isRunning = true
-    while(isRunning){
-            const choice = prompt(
-                    APP_NAME + '\n'+
-                    LINE + '\n\n'+
-                    'PERSONAL CONTROL PANEL\n\n'+
-                    '1. Create new objective\n' +
-                    '2. Review progress\n' +
-                    '3. Update completion\n' +
-                    '4. Manage objectives\n' +
-                    '5. Exit'
-                    )
+function renderHabit(habit) {
+  const task = document.createElement("div");
+  task.classList.add("task");
 
-                    if (choice === null) {
-                        isRunning = false
-                     break
-                    }
+  const taskIcon = document.createElement("div");
+  taskIcon.classList.add("taskIcon");
+  taskIcon.textContent = habit.icon;
 
-            switch(choice){
-                case '1':
-                    addObjective()
-                    break
-                case '2':
-                    showObjectives()
-                    break
-                case '3':
-                    updateCompletion()
-                    break
-                case '4':
-                    deleteObjective()
-                    break
-                case '5':
-                    const askExit = prompt('SESSION TERMINATION\n=============\n\n'+'End current session? (y/n): ')
-                    if (askExit === 'y' || askExit === 'Y'){
-                    isRunning = false
-                    }
-                    
-                    break
-                default :
-                    console.log('Invalid command. Please select a valid option.')
-            }
-        }
+  if (habit.completed) {
+    taskIcon.classList.add("checked");
+  }
+
+  const taskInfo = document.createElement("div");
+  taskInfo.classList.add("taskInfo");
+
+  const habitName = document.createElement("span");
+  habitName.classList.add("habitName");
+  habitName.textContent = habit.name;
+
+  const status = document.createElement("p");
+  updateHabitStatus(status, habit.completed);
+
+  taskInfo.append(habitName, status);
+
+  const taskControls = document.createElement("div");
+  taskControls.classList.add("taskControls");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("checkBox");
+  checkbox.checked = habit.completed;
+
+  checkbox.addEventListener("change", () => {
+    habit.completed = checkbox.checked;
+
+    updateHabitStatus(status, habit.completed);
+    taskIcon.classList.toggle("checked", habit.completed);
+
+    saveHabits();
+    updateProgress();
+  });
+
+  const actions = document.createElement("div");
+  actions.classList.add("actions");
+
+  const editButton = document.createElement("div");
+  editButton.classList.add("edit");
+  editButton.textContent = "✎";
+
+  editButton.addEventListener("click", () => {
+    habitBeingEdited = {
+      habit,
+      habitName,
+      taskIcon,
+    };
+
+    elements.editHabitNameInput.value = habit.name;
+    elements.editIconSelection.value = habit.icon;
+
+    elements.editHabitModal.classList.add("active");
+  });
+
+  const deleteButton = document.createElement("div");
+  deleteButton.classList.add("remove");
+  deleteButton.textContent = "🗑";
+
+  deleteButton.addEventListener("click", () => {
+    const index = habits.findIndex(
+      (storedHabit) => storedHabit.id === habit.id,
+    );
+
+    if (index === -1) return;
+
+    habits.splice(index, 1);
+    task.remove();
+
+    saveHabits();
+    updateProgress();
+  });
+
+  actions.append(editButton, deleteButton);
+  taskControls.append(checkbox, actions);
+  task.append(taskIcon, taskInfo, taskControls);
+
+  elements.tasksContainer.appendChild(task);
+}
+
+function updateHabitStatus(status, completed) {
+  status.textContent = completed ? "Completed" : "Not completed yet";
+
+  status.classList.toggle("green", completed);
 }
 
 // =====================
-// Objective Management
+// Habit Management
 // =====================
 
-function deleteObjective() {
+function addHabit() {
+  const name = elements.habitNameInput.value.trim();
+  const icon = elements.iconSelection.value;
 
+  if (!name || !icon) return;
 
-    const objectiveIndex = prompt('OBJECTIVE MANAGEMENT\n=============\n\n'+'Select an objective to remove: ')
-    if (objectiveIndex > 0 && objectiveIndex <= habits.length) {
+  const habit = {
+    id: crypto.randomUUID(),
+    name,
+    completed: false,
+    icon,
+  };
 
-        const confirmRemoval = prompt('REMOVAL REQUEST\n=============\n\n'+'This action cannot be reversed.\n'+'Confirm removal(y/n): ')
-    
-        if (confirmRemoval === 'y'|| confirmRemoval === 'Y'){
-            habits.splice(objectiveIndex - 1, 1)
-            console.log('REMOVAL COMPLETE.\n\n'+
-                'Objective deleted successfully.')
-        } else {
-            console.log('REMOVAL CANCELLED.\n\n'+
-                'No changes were made.')
-        }
-    } else {
-        console.log('INVALID SELECTION.\n\n'+'No matching objective found.')
-    }
+  habits.push(habit);
+
+  saveHabits();
+  renderHabit(habit);
+  updateProgress();
+
+  elements.addHabitForm.reset();
+  closeAddModal();
 }
 
-function addObjective(){
+function updateHabit() {
+  if (!habitBeingEdited) return;
 
-    const objectiveName = prompt('NEW OBJECTIVE\n=============\n'+
-                'Define your next focus.\n\n'+
-                'Objective name: ')
+  const name = elements.editHabitNameInput.value.trim();
+  const icon = elements.editIconSelection.value;
 
-                const cleanName = objectiveName ? objectiveName.trim() : ''
+  if (!name || !icon) return;
 
-                if (!cleanName) {
-                    console.log('OBJECTIVE NAME REQUIRED.')
-                    return
-                }
+  const { habit, habitName, taskIcon } = habitBeingEdited;
 
-    const newObjective = {
-        id : habits.length +1,
-        name : cleanName,
-        completed : false
-    }
+  habit.name = name;
+  habit.icon = icon;
 
-    habits.push(newObjective)
+  habitName.textContent = name;
+  taskIcon.textContent = icon;
 
-    console.log('OBJECTIVE CREATED\n\n'+
-                'Tracking is now active.')
-}
-
-function showObjectives() {
-    if (habits.length === 0) {
-        console.log('NO OBJECTIVES FOUND.\n\n'+'Create your first objective to begin tracking.')
-        return
-    }
-      console.log('PROGRESS OVERVIEW\n================\n\n'+
-                'Analyzing current performance...')
-
-    for(let i = 0; i < habits.length; i++){
-        const status = habits[i].completed ? 'COMPLETED' : 'ACTIVE'
-
-        console.log(
-            '[' + habits[i].id + '] ' +
-            habits[i].name +
-            ' | ' +
-            'STATUS: '+status
-        )
-    }
+  saveHabits();
+  closeEditModal();
 }
 
 // =====================
-// Progress Management
+// Progress
 // =====================
 
-function updateCompletion(){
+function updateProgress() {
+  const total = habits.length;
 
-    const objectiveIndex = prompt('PROGRESS UPDATE\n=============\n\n'+
-        'Select completed objective: ')
+  const completed = habits.filter((habit) => habit.completed).length;
 
-        if (objectiveIndex > 0 && objectiveIndex <= habits.length) {
-        habits[objectiveIndex - 1].completed = true
-          console.log(habits[objectiveIndex - 1].name +
-        '  UPDATED.\n\n'+'Progress Recorded')
+  const percentage = total ? Math.round((completed / total) * 100) : 0;
 
-    } else {
-        console.log('INVALID SELECTION.\n\n'+
-            'No matching objective found.'
-        )
-    }
+  elements.habitCount.textContent = `${total} habits being tracked`;
+
+  elements.progressCircle.style.background = `conic-gradient(
+      green ${percentage}%,
+      #1b1e24 ${percentage}%
+    )`;
+
+  elements.progressText.textContent = `${completed} of ${total} completed · ${percentage}%`;
 }
 
 // =====================
-// Start Application
+// Storage
 // =====================
 
-console.log(
-    APP_NAME + '\n'+
-    LINE + '\n\n'+
-    'Welcome back.\n\n'+
-    'Preparing your personal progress system...\n\n'+
-    'Analyzing current state...\n\n'+
-    'Ready.'
-)
+function saveHabits() {
+  localStorage.setItem("habits", JSON.stringify(habits));
+}
 
-mainMenu()
+function loadHabits() {
+  const savedHabits = localStorage.getItem("habits");
+
+  if (!savedHabits) {
+    updateProgress();
+    return;
+  }
+
+  const storedHabits = JSON.parse(savedHabits);
+
+  for (const habit of storedHabits) {
+    habits.push(habit);
+    renderHabit(habit);
+  }
+
+  updateProgress();
+}
+
+// =====================
+// Modals
+// =====================
+
+function openAddModal() {
+  elements.addHabitModal.classList.add("active");
+}
+
+function closeAddModal() {
+  elements.addHabitModal.classList.remove("active");
+}
+
+function closeEditModal() {
+  elements.editHabitModal.classList.remove("active");
+  habitBeingEdited = null;
+}
+
+// =====================
+// Events
+// =====================
+
+elements.addHabitButton.addEventListener("click", openAddModal);
+
+elements.addHabitForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addHabit();
+});
+
+elements.cancelButton.addEventListener("click", closeAddModal);
+
+elements.cancelEditButton.addEventListener("click", closeEditModal);
+
+elements.editHabitForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  updateHabit();
+});
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "Light") {
+    document.body.classList.add("light");
+  }
+}
+
+// =====================
+// Start
+// =====================
+loadTheme();
+console.log(document.body.classList.contains("light"));
+
+loadHabits();
+
+console.log("Theme loaded");

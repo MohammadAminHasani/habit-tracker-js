@@ -1,16 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
-</head>
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
+      <title>Habit Tracker</title>
 
-    <h1>Habit Tracker</h1>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="light.css">
+    </head>
 
-    <script src="src/habit-tracker.js"></script>
+    <body>
+      <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sideBar">
+          <h3>
+            <span class="bgBlue">☑</span>
+            Habit Tracker
+          </h3>
 
-</body>
-</html>
+          <nav>
+            <ul class="menu">
+              <li class="active">▦&nbsp;&nbsp; Dashboard</li>
+              <li><a class="setting" href="setting.html">⚙&nbsp;&nbsp; Settings</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+          <header>
+            <div>
+              <h2>Your habits</h2>
+              <p id="countHabit">0 habits being tracked</p>
+            </div>
+
+            <button type="button" id="addHabitBtn">+ Add habit</button>
+          </header>
+
+          <!-- Progress -->
+          <section class="mainContent">
+            <div class="progressCircle"></div>
+
+            <div class="progressInfo">
+              <h3>Today's progress</h3>
+              <p id="progressText">0 of 0 completed · 0%</p>
+            </div>
+          </section>
+
+          <!-- Habits -->
+          <section class="tasks" aria-label="Your habits"></section>
+        </main>
+      </div>
+
+      <!-- Add Habit Modal -->
+      <div id="habitBlurModel">
+        <div id="addHabitWindow">
+          <form class="habitInformation">
+            <label for="habitName"> Habit name </label>
+
+            <input
+              id="habitName"
+              name="habitName"
+              type="text"
+              placeholder="Morning run"
+              required
+            />
+
+            <label for="iconSelection"> Icon </label>
+
+            <select id="iconSelection" name="icon" required>
+              <option value="🏃">🏃</option>
+              <option value="🏋️">🏋️</option>
+              <option value="🏊">🏊</option>
+              <option value="📈">📈</option>
+              <option value="💼">💼</option>
+              <option value="💰">💰</option>
+              <option value="📚">📚</option>
+              <option value="💻">💻</option>
+              <option value="☕">☕</option>
+              <option value="🌙">🌙</option>
+              <option value="⭐">⭐</option>
+              <option value="💧">💧</option>
+              <option value="😴">😴</option>
+              <option value="🩺">🩺</option>
+            </select>
+
+            <button type="submit" id="addHabitbtn">+ Create Habit</button>
+
+            <button type="button" id="cancelButton">Cancel</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Edit Habit Modal -->
+      <div id="editHabitBlur">
+        <div id="editHabitWindow">
+          <form class="editHabitInformation">
+            <label for="editHabitName"> Habit name </label>
+
+            <input
+              id="editHabitName"
+              name="habitName"
+              type="text"
+              placeholder="Morning run"
+              required
+            />
+
+            <label for="editIconSelection"> Icon </label>
+
+            <select id="editIconSelection" name="icon" required>
+              <option value="🏃">🏃</option>
+              <option value="🏋️">🏋️</option>
+              <option value="🏊">🏊</option>
+              <option value="📈">📈</option>
+              <option value="💼">💼</option>
+              <option value="💰">💰</option>
+              <option value="📚">📚</option>
+              <option value="💻">💻</option>
+              <option value="☕">☕</option>
+              <option value="🌙">🌙</option>
+              <option value="⭐">⭐</option>
+              <option value="💧">💧</option>
+              <option value="😴">😴</option>
+              <option value="🩺">🩺</option>
+            </select>
+
+            <button type="submit" id="saveHabitbtn">Save Changes</button>
+
+            <button type="button" id="cancelEditButton">Cancel</button>
+          </form>
+        </div>
+      </div>
+
+      <script src="src/habit-tracker.js"></script>
+    </body>
+  </html>

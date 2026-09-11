@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+    <link rel="stylesheet" href="light.css">
+    <link rel="stylesheet" href="setting.css">
+  </head>
+  <body>
+    <div class="setting-layout">
+      <aside class="sideBar">
+        <h3>
+          <span class="bgBlue">☑</span>
+          Habit Tracker
+        </h3>
+
+        <nav>
+          <ul class="menu">
+            <li><a href="index.html">▦&nbsp;&nbsp; Dashboard</a></li>
+            <li class="active"><a href="setting.html">⚙&nbsp;&nbsp; Settings</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="main-content">
+        <h2>Settings</h2>
+        <p>Manage your habit tracker</p>
+        <form>
+          <div class="theme-selection">
+            <h3>Appearance</h3>
+            <label for="themes">Theme</label>
+            <select id="themes">
+              <option value="Dark">Dark</option>
+              <option value="Light">Light</option>
+            </select>
+          </div>
+          <div class="data">
+            <h3>Data</h3>
+            <h4>Export Habits</h4>
+            <button id="export-btn" type="button">Export</button>
+            <h4>Clear all habits</h4>
+            <button id="clear-btn" type="button">Clear all habits</button>
+          </div>
+          <div class="about">
+            <h2>Habit tracker</h2><br>
+            <p>Version 2.0</p><br>
+            <p>A responsive habit-tracking web app built with HTML, CSS, and JavaScript.</p><br>
+            <p>Developed by MohammadAmin Hasani</p>
+          </div>
+        </form>
+      </main>
+    </div>
+    <script src="src/setting.js"></script>
+  </body>
+</html>

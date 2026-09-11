@@ -1,0 +1,127 @@
+/* =========================
+   Dashboard Light Theme
+========================= */
+
+body.light {
+  background: #f5f7fa;
+  color: #15181e;
+}
+
+body.light .sideBar {
+  background: #ffffff;
+  border-color: #dfe3e8;
+}
+
+body.light .task,
+body.light .mainContent {
+  background: #ffffff;
+  border-color: #dfe3e8;
+}
+
+body.light .taskInfo .habitName {
+  color: #15181e;
+}
+
+body.light header p,
+body.light .taskInfo p,
+body.light .progressInfo p {
+  color: #687181;
+}
+
+body.light .progressCircle {
+  border-color: #e2e6eb;
+}
+
+body.light .progressCircle::before {
+  background: #ffffff;
+}
+
+body.light .taskIcon {
+  background: #f1f3f6;
+  border-color: #dfe3e8;
+}
+
+body.light .habitInformation input,
+body.light .habitInformation select,
+body.light .editHabitInformation input,
+body.light .editHabitInformation select {
+  background: #f1f3f6;
+  color: #15181e;
+  border-color: #dfe3e8;
+}
+
+body.light #addHabitWindow,
+body.light #editHabitWindow {
+  background: #ffffff;
+  border-color: #dfe3e8;
+}
+
+
+/* =========================
+   Settings Light Theme
+========================= */
+
+body.light .main-content {
+  color: #15181e;
+}
+
+body.light .main-content > p,
+body.light .theme-selection label,
+body.light .about p {
+  color: #687181;
+}
+
+body.light .theme-selection,
+body.light .data,
+body.light .about {
+  background: #ffffff;
+  border-color: #dfe3e8;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+body.light #themes {
+  background: #f1f3f6;
+  color: #15181e;
+  border-color: #dfe3e8;
+}
+
+body.light #clear-btn {
+  background: #e8ebef;
+  color: #15181e;
+}
+
+body.light #clear-btn:hover {
+  background: #dce1e7;
+}
+
+body.light .sideBar h3 {
+  color: #15181e;
+}
+
+
+/* =========================
+   Sidebar
+========================= */
+
+body.light .menu a,
+body.light .menu a:visited {
+  color: #687181;
+}
+
+body.light .menu li:hover {
+  background: rgba(76, 141, 255, 0.09);
+  border-color: rgba(76, 141, 255, 0.12);
+}
+
+body.light .menu li:hover a {
+  color: #4c8dff;
+}
+
+body.light .menu li.active {
+  background: rgba(76, 141, 255, 0.09);
+  border-color: rgba(76, 141, 255, 0.12);
+}
+
+body.light .menu li.active a {
+  color: #4c8dff;
+}
