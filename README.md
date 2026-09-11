@@ -149,5 +149,3 @@ This project is licensed under the MIT License.
 **MohammadAmin Hasani**
 
 Full-Stack Developer in progress, focused on building practical web applications with JavaScript and Python.
-
-Built as part of my journey toward becoming a full-stack developer.
