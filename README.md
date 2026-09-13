@@ -1,39 +1,44 @@
 # Habit Tracker JS
 
-A responsive habit-tracking web application built with vanilla JavaScript, designed to practice real-world application logic, DOM manipulation, data persistence, and user interaction.
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)
+![Status](https://img.shields.io/badge/Status-Completed-green)
 
-## Overview
+**Habit Tracker JS is a browser-based productivity application for creating, managing, and tracking daily habits using vanilla JavaScript.**
 
-Habit Tracker JS is a lightweight productivity application that allows users to create, manage, and track daily habits through a clean and responsive web interface.
+The project focuses on practical frontend development and demonstrates how JavaScript can be used to build a complete interactive application with dynamic UI rendering, persistent client-side storage, data management, and theme customization.
 
-The project started as a JavaScript practice application and evolved into a complete browser-based habit tracker with persistent data, progress tracking, theme customization, and data management features.
+## What it can do
 
-The main goal of the project is to strengthen practical JavaScript skills while applying concepts commonly used in real-world web applications.
-
-## Features
-
-* Create new habits
-* Edit existing habits
-* Delete habits
+* Create, edit, and delete habits
 * Mark habits as completed or incomplete
-* Automatic progress calculation
-* Habit count tracking
-* Persistent data using Local Storage
-* Custom habit icons
-* Dark and Light themes
-* Theme preference persistence
-* Export habits as a JSON backup
-* Clear all habits with confirmation
-* Responsive design for different screen sizes
-* Accessible form labels and keyboard focus states
+* Calculate and display habit progress automatically
+* Track the total number of habits
+* Persist data using the Web Storage API
+* Assign custom icons to habits
+* Switch between Dark and Light themes
+* Persist theme preferences
+* Export habit data as a JSON backup
+* Clear stored data with confirmation
+* Provide a responsive interface across different screen sizes
+* Support accessible form labels and keyboard focus states
 
-## Technologies Used
+## How it works
 
-* HTML5
-* CSS3
-* JavaScript (ES6+)
-* Web Storage API
-* DOM API
+The application represents each habit as a JavaScript object and dynamically renders the habit data into the interface.
+
+User interactions update the application state, while `localStorage` provides client-side persistence. The dashboard recalculates progress whenever habit completion changes, keeping the interface synchronized with the stored data.
+
+```text
+User Interaction
+       ↓
+JavaScript Logic
+       ↓
+Application State
+       ↓
+DOM Rendering
+       ↓
+Local Storage
+```
 
 ## Project Structure
 
@@ -55,75 +60,94 @@ habit-tracker-js/
 └── .gitignore
 ```
 
-## How to Run
+The project separates application logic, settings functionality, and styling into dedicated files to keep the codebase organized and maintainable.
 
-1. Clone the repository:
+## Built With
 
-```bash
-git clone <https://github.com/MohammadAminHasani/habit-tracker-js>
-```
+* **HTML5**
+* **CSS3**
+* **JavaScript (ES6+)**
+* **DOM API**
+* **Web Storage API**
+* **JSON**
 
-2. Open `index.html` in a modern web browser.
+No backend or external JavaScript dependencies are required.
 
-3. Start creating and tracking your habits.
+## Core Functionality
 
-No backend or external dependencies are required.
+### Dynamic Habit Management
 
-## Core Concepts Practiced
+Habits are represented as JavaScript objects and rendered dynamically into the interface. Users can create, modify, complete, and remove habits without reloading the page.
 
-This project demonstrates practical use of:
+### Progress Tracking
 
-* Variables and constants
-* Functions and program structure
+The application automatically calculates completion progress based on the user's current habits and updates the dashboard accordingly.
+
+### Persistent Storage
+
+Habit data is stored in the browser using `localStorage`, allowing users to retain their habits between page refreshes and browser sessions.
+
+### Theme System
+
+The application includes Dark and Light themes. The selected preference is stored locally and restored when the application is reopened.
+
+### Data Management
+
+The Settings page provides controls for managing application data, including:
+
+* Exporting habit data as a JSON file
+* Clearing all stored habits
+* Managing appearance preferences
+* Viewing project information
+
+## Technical Concepts
+
+This project demonstrates practical implementation of:
+
+* JavaScript variables and constants
+* Functions and modular program structure
 * Arrays and objects
 * Conditional logic
 * Loops
 * DOM manipulation
-* Event listeners
-* Form handling
-* Input validation
+* Event handling
+* Form handling and validation
 * CRUD-style operations
 * Local Storage
-* JSON data handling
+* JSON data processing
 * Dynamic UI rendering
 * CSS class manipulation
 * Responsive design
-* Basic application architecture
+* Client-side application architecture
 
-## Data Management
+## Getting Started
 
-Habit data is stored locally in the browser using `localStorage`.
+### 1. Clone the repository
 
-This allows habits to remain available after refreshing or reopening the application.
+```bash
+git clone https://github.com/MohammadAminHasani/habit-tracker-js.git
+cd habit-tracker-js
+```
 
-The Settings page also provides an option to export the stored habit data as a JSON file, making it possible to create a personal backup.
+### 2. Open the application
 
-## Project Highlights
+Open `index.html` in a modern web browser.
 
-### Dynamic Habit Management
+Alternatively, run the project using a local development server such as VS Code Live Server.
 
-Habits are represented as JavaScript objects and rendered dynamically into the interface. Users can modify their habits without refreshing the page.
+### 3. Start tracking
 
-### Progress Tracking
+Create your first habit and begin managing your daily progress.
 
-The dashboard automatically calculates the number of completed habits and displays the current completion percentage.
+No installation, backend, or external dependencies are required.
 
-### Persistent Storage
+## Project Status
 
-Local Storage keeps user data between browser sessions without requiring a backend database.
+**Completed**
 
-### Theme System
+Habit Tracker JS started as a JavaScript learning project and evolved into a complete client-side web application.
 
-The application supports Dark and Light themes. The selected theme is stored in Local Storage and automatically restored when the application is opened again.
-
-### Settings
-
-The Settings page provides controls for:
-
-* Appearance
-* Habit data export
-* Clearing stored habits
-* Project information
+The project was built to strengthen practical JavaScript skills while working with application state, DOM manipulation, persistent browser storage, user interactions, and frontend architecture.
 
 ## License
 
@@ -131,6 +155,6 @@ This project is licensed under the MIT License.
 
 ## Author
 
-**MohammadAmin Hasani**
+MohammadAmin
 
-Full-Stack Developer in progress, focused on building practical web applications with JavaScript and Python.
+This project is licensed under the MIT License.
