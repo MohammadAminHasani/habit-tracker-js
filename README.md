@@ -2,6 +2,7 @@
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
 **Habit Tracker JS is a browser-based productivity application for creating, managing, and tracking daily habits using vanilla JavaScript.**
 
