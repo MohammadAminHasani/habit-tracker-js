@@ -160,6 +160,4 @@ This project is licensed under the MIT License.
 
 ## Author
 
-MohammadAmin
-
-This project is licensed under the MIT License.
+MohammadAmin Hasani
