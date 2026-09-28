@@ -12,6 +12,10 @@ The project focuses on practical frontend development and demonstrates how JavaS
 
 ![Habit Tracker Preview](https://github.com/user-attachments/assets/f8341c79-78b0-4673-9bac-81fa8d404b6b)
 
+## Live Demo
+
+[View Application](https://mohammadaminhasani.github.io/habit-tracker-js/)
+
 ## What it can do
 
 * Create, edit, and delete habits
