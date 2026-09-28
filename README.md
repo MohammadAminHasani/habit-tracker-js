@@ -7,6 +7,11 @@
 
 The project focuses on practical frontend development and demonstrates how JavaScript can be used to build a complete interactive application with dynamic UI rendering, persistent client-side storage, data management, and theme customization.
 
+## Preview
+
+![Habit Tracker Preview](<img width="1905" height="904" alt="Screenshot 2026-09-28 124135" src="https://github.com/user-attachments/assets/f8341c79-78b0-4673-9bac-81fa8d404b6b" />
+)
+
 ## What it can do
 
 * Create, edit, and delete habits
