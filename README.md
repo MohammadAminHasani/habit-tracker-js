@@ -151,7 +151,7 @@ No installation, backend, or external dependencies are required.
 
 Habit Tracker JS started as a JavaScript learning project and evolved into a complete client-side web application.
 
-The project was built to strengthen practical JavaScript skills while working with application state, DOM manipulation, persistent browser storage, user interactions, and frontend architecture.
+Habit Tracker JS is a complete client-side web application focused on productivity tracking, built with vanilla JavaScript and modern frontend practices.
 
 ## License
 
